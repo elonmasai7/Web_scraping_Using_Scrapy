@@ -62,9 +62,14 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "countries_gdp.pipelines.CountriesGdpPipeline": 300,
-#}
+# The number represents the order, lower -higher priority
+ITEM_PIPELINES = {
+   "countries_gdp.pipelines.CountriesGdpPipeline": 100,
+   "countries_gdp.pipelines.NoDuplicateCountryPipeline": 200,
+   "countries_gdp.pipelines.SaveToDataBasePipeline": 300,
+
+
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
