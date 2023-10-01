@@ -21,6 +21,7 @@ class BuyrentSpider(scrapy.Spider):
             parent_item.add_value('house_href', house_href)
             parent_item.add_css('house_price', 'div.hidden p a::text')
             parent_item.add_css('house_location', 'div.flex p::text')
+            
 
 
             child_page_url = house_href
@@ -33,7 +34,11 @@ class BuyrentSpider(scrapy.Spider):
 
         child_item.add_css('service_type', 'a.text-grey-550:nth-child(1)')
         child_item.add_css('property_type', 'li.items-center:nth-child(3) > a:nth-child(2)')
-        # child_item.add_css('bed_rooms', 'span.mr-5:nth-child(2)::text')
+
+        texts = response.css('span[aria-label="bedrooms"]::text').extract()
+        num_beds = ''.join([text.strip() for text in texts if text.strip()])
+        child_item.add_value('bed_rooms', num_beds)
+        
         
         merged_item = {**parent_item.load_item(), **child_item.load_item()}
         yield merged_item            

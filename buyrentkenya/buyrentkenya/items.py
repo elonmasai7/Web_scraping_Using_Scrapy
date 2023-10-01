@@ -36,6 +36,7 @@ class BrParentItem(scrapy.Item):
 
 
 
+
 class BrChildItem(scrapy.Item):
 
 
@@ -53,5 +54,6 @@ class BrChildItem(scrapy.Item):
         input_processor=MapCompose(remove_tags, str.strip, int),
         output_processor=TakeFirst()
     )    
+
 
   
