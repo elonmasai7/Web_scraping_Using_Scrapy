@@ -28,6 +28,12 @@ class BuyrentSpider(scrapy.Spider):
             if child_page_url:
                 yield response.follow(child_page_url, callback=self.parse_child_page, meta={'parent_item': parent_item})
 
+        next_page = response.css('a.justify-center:nth-child(3)::attr(href)').extract_first()
+        if next_page:
+            if self.page_number <= self.max_pages:
+                self.page_number += 1
+                yield scrapy.Request(url = next_page, callback=self.parse)
+
     def parse_child_page(self, response):
         parent_item = response.meta['parent_item']
         child_item = ItemLoader(item=BrChildItem(), response=response)
