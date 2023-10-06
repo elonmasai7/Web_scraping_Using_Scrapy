@@ -6,9 +6,9 @@ from scrapy.loader import ItemLoader
 class BuyrentSpider(scrapy.Spider):
     name = "buyrent"
     allowed_domains = ["buyrentkenya.com"]
-    start_urls = ["https://www.buyrentkenya.com/property-for-sale", "https://www.buyrentkenya.com/property-for-rent"]
+    start_urls = ["https://www.buyrentkenya.com/estate-agent/glo-realtors"]
     page_number = 1
-    max_pages = 500
+    max_pages = 15
 
     def parse(self, response):
         # follow links to property pages
