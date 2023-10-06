@@ -1,0 +1,6 @@
+*.csv
+countries_gdp/countries_gdp/__pycache__/
+countries_gdp/countries_gdp/spiders/__pycache__/
+*.pyc
+*.db
+*.vscode

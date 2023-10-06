@@ -15,6 +15,7 @@ class GlorealtorsSpider(scrapy.Spider):
             parent_item.add_css("house_href", "div.item-body h2 > a::attr(href)")
             parent_item.add_css("house_price", "div.item-body ul li.item-price::text")
             parent_item.add_css("bed_rooms", "ul.item-amenities li.h-beds > span.hz-figure::text")
+            parent_item.add_css("furnished", "div.item-body h2 > a::attr(href)")
             
             # Extract the child page URL
             child_page_url = house.css('div.item-body h2 > a::attr(href)').extract_first()

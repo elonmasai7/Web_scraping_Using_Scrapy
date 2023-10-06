@@ -16,6 +16,14 @@ def try_float(value):
     except ValueError:
         return value
 
+def furnished_or_not(value):
+    value = value.lower()
+    #if value contains furnished return True else False
+    if 'furnished' in value:
+        return True
+    else:
+        return False
+
 
 class BrParentItem(scrapy.Item):
     house_href = scrapy.Field(
@@ -31,7 +39,12 @@ class BrParentItem(scrapy.Item):
     house_location = scrapy.Field(
         input_processor=MapCompose(remove_tags, str.strip),
         output_processor=TakeFirst()
-    )    
+    )
+
+    furnished = scrapy.Field(    
+        input_processor=MapCompose(remove_tags, str.strip, furnished_or_not),
+        output_processor=TakeFirst()
+    )
 
 
 

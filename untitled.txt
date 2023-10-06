@@ -1,0 +1,29 @@
+XPath
+    - /html/body/table[3]/tbody/tr/td[2]
+    - //table[3]//td[2]
+    - //table[@class='wikitable]
+    - //table[3]/@class
+    - //img[1]/@src
+    - //table[3]/td[2]/text()
+
+#CSS Selectors:
+
+
+
+items.py -allows us to create a class to extract output in a structure format helping in intergrations with other systems like django or database
+TakeFirst - processor that extracts the first value from a list of values
+MapCompose - a pipeline of processing steps in a single step
+
+Pipelines.py - Python class that implements checks on your itemloader output
+
+handles missing values on the resultant item loaded item, duplicates etc
+
+Settings.py - introducing, a new pipeline make sure you modify the settings.py to make surre it is configured to run properly
+    # The number represents the order, lower -higher priority
+    ITEM_PIPELINES = {
+    "countries_gdp.pipelines.CountriesGdpPipeline": 300,
+    "customPipeline": 300,
+
+    }
+
+

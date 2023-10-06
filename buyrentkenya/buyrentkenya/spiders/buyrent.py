@@ -8,7 +8,7 @@ class BuyrentSpider(scrapy.Spider):
     allowed_domains = ["buyrentkenya.com"]
     start_urls = ["https://www.buyrentkenya.com/property-for-sale", "https://www.buyrentkenya.com/property-for-rent"]
     page_number = 1
-    max_pages = 50
+    max_pages = 500
 
     def parse(self, response):
         # follow links to property pages
@@ -21,6 +21,7 @@ class BuyrentSpider(scrapy.Spider):
             parent_item.add_value('house_href', house_href)
             parent_item.add_css('house_price', 'div.hidden p a::text')
             parent_item.add_css('house_location', 'div.flex p::text')
+            parent_item.add_css('furnished', 'div.block h3> a::attr(href)')
             
 
 
